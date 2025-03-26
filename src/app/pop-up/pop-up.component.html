@@ -1,0 +1,28 @@
+
+<div class="pop-up">
+    
+    <div *ngIf="!error" class="pop-icon">
+        <img class="jpg-icon" alt="Success Icon" src="../../../../assets/Capture.PNG">
+        <p>Transfer of amount {{ data1.amount | currency:curr }} to Account Number {{ data1.number }} is successful!!</p>
+        <div class="button-group">
+            <button mat-raised-button color="primary" (click)="redirect();" mat-dialog-close>
+                View Account Details
+            </button>
+            <button mat-raised-button color="primary" mat-dialog-close>
+                Close
+            </button>
+        </div>
+    </div>
+  
+   
+    <div *ngIf="error" class="pop-icon">
+        <img class="jpg-icon" alt="Error Icon" src="../../../../assets/oops.PNG">
+        <p>{{ data1.errorS || 'An unexpected error occurred.' }}</p>
+        <div class="button-group">
+            <button mat-raised-button mat-dialog-close>
+                Close
+            </button>
+        </div>
+    </div>
+  </div>
+  

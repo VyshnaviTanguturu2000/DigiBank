@@ -1,0 +1,95 @@
+<mat-toolbar style="background-color:lightblue">
+  <mat-toolbar-row>
+    <button mat-button disabled>
+      <img class="jpg-icon" src="../../../../assets/logo.PNG" style="width: 80px;;height:fit-content">
+    </button>
+    <span>
+      <b style="font-size:25px">
+        Welcome,{{username}}!!
+      </b>
+    </span>
+
+
+    <span class="example-spacer"></span>
+    <button mat-raised-button color="primary" (click)="logout();" class="example-icon favorite-icon"
+      aria-label="Example icon-button with heart icon">
+      LogOut
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+<div class="image-container">
+
+  <div class="table-container">
+    <mat-sidenav-container>
+      <mat-sidenav #sidenav opened="true" mode="side" style="background-color: lightblue;">
+        <mat-nav-list>
+          <a mat-list-item routerLink="/accountSummary">Summary</a>
+          <a mat-list-item routerLink="/transfer/0">Transfer Fund</a>
+        </mat-nav-list>
+      </mat-sidenav>
+      <mat-sidenav-content>
+        <div class="table-content" style="height:95vh;">
+          <img src="../../assets/bg1.jpg" alt="">
+          <table mat-table class='summaryTable' matSort [dataSource]="dataSource">
+            <ng-container matColumnDef="AccountNumber">
+              <th mat-header-cell *matHeaderCellDef> 
+                <span>
+                 <b>
+                 ACCOUNT NUMBER 
+                </b>
+                </span>
+               </th>
+              <td mat-cell *matCellDef="let element"><a routerLink="/accountDetails/{{element.AccountNumber}}">
+                  {{element.AccountNumber}}
+                </a> </td>
+            </ng-container>
+            <ng-container matColumnDef="AccountType">
+              <th mat-header-cell *matHeaderCellDef>
+                <span>
+                  <b>
+                    ACCOUNT TYPE
+                 </b>
+                 </span>
+               
+              </th>
+              <td mat-cell *matCellDef="let element"> {{element.AccountType}} </td>
+            </ng-container>
+            <ng-container matColumnDef="Balance">
+              <th mat-header-cell *matHeaderCellDef>
+                <span>
+                  <b>
+                    BALANCE
+                 </b>
+                 </span>
+              </th>
+              <td mat-cell *matCellDef="let element"> {{element.Balance|currency:curr }} </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </div>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  </div>
+
+</div>
+
+<div>
+  <!-- <table mat-table  matSort [dataSource]="dataSource">
+    <ng-container matColumnDef="account Number">
+      <th mat-header-cell *matHeaderCellDef> Account Number </th>
+      <td mat-cell *matCellDef="let element">{{element.AccountNumber}} </td>
+    </ng-container>
+    <ng-container matColumnDef="narration">
+      <th mat-header-cell *matHeaderCellDef >Account Type</th>
+      <td mat-cell *matCellDef="let element"> {{element.AccountType}} </td>
+    </ng-container>
+    <ng-container matColumnDef="balance">
+      <th mat-header-cell *matHeaderCellDef >Balance</th>
+      <td mat-cell *matCellDef="let element"> {{element.Balance}} </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table> -->
+  <router-outlet></router-outlet>
+</div>

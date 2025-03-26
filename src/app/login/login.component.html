@@ -1,0 +1,49 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+     
+      <b>Digi Bank</b>
+      <span class="example-spacer"></span>
+  
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <div class="bg">
+    <div class="container">
+      <div class="row">
+          <div class="col-md-6">
+              <div class="card">
+                  <div class="text center">
+                      <h1>Login</h1>
+                  </div>
+                  <form>
+                      <form [formGroup]="loginForm" (ngSubmit)="login()">
+                          <div class="mb-3">
+                           
+                            <label for="exampleInputEmail1" class="form-label">User Id</label>
+                            <input formControlName="userId" type="userId" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                           
+                          </div>
+                          <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Password</label>
+                            <input formControlName="pswd" type="password" class="form-control" id="exampleInputPassword1">
+                          </div>
+                          <div class="text-center mt-4">
+                            <button 
+                              mat-raised-button 
+                              color="primary" 
+                              type="submit" 
+                              class="btn btn-primary login-button">
+                              Login
+                            </button>
+                          </div>
+                         
+                         
+                         
+                        </form>
+                    
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+  </div>
+

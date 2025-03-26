@@ -1,0 +1,37 @@
+.card{
+    margin-top:12em;
+    margin-left: -20em;
+    border:none;
+    width:500px;
+    padding:40px;
+    position:relative;
+    left:50%
+    
+   
+}
+.mt-4 {
+  margin-top: 40px; /* Adds space above the login button */
+  margin-left: 50%;
+}
+
+html, 
+body, 
+#background { 
+  width: 100vw;
+  min-height: 100vh;
+  background-color: #9B59B6;
+}
+
+.bg {
+    background-image: url("../../assets/pic-3.jpg");
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size:cover;
+  }
+.login-button{
+    height: 3.5em;
+    margin-top: -1em;
+    margin-left: 4em;
+}
+

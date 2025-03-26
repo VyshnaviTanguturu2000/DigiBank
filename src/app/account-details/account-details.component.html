@@ -1,0 +1,96 @@
+<mat-toolbar style="background-color:lightblue">
+  <mat-toolbar-row>
+    <button mat-button disabled>
+      <img class="jpg-icon"  src="../../../../assets/logo.PNG" 
+          style="width: 80px;;height:fit-content">
+    </button>
+    <span>
+      <b style="font-size:25px">
+        Welcome,{{username}}!!
+      </b>
+      </span>
+    <span class="example-spacer"></span>
+<button  mat-raised-button color="primary" (click)="logout();"  class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+ LogOut
+</button>
+  </mat-toolbar-row>
+</mat-toolbar>
+<mat-sidenav-container >
+<mat-sidenav #sidenav opened="true" mode="side" style="background-color: lightblue;">
+  <mat-nav-list>
+    <a mat-list-item routerLink="/accountSummary">Summary</a>
+    <a mat-list-item routerLink="/transfer/0">Transfer Fund</a>
+  </mat-nav-list>
+</mat-sidenav>
+<mat-sidenav-content>
+  <div style="height:88vh;">
+<mat-card *ngFor="let details of data1">
+    <mat-card-content  style="text-align:center">
+        <p>
+          <span>
+            <b style="font-size:25px">{{details.AccountType}}
+            </b></span></p>
+        <p>
+          <span>
+            <b style="font-size:25px">
+          Account Number:{{details.AccountNumber}}
+        </b>
+      </span></p>
+        <p>
+          <span>
+            <b style="font-size:25px">Account Balance:{{details.Balance|currency:curr}}
+            </b></span></p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="primary" class="btn btn-primary" type="button" (click)="directToTrasfer(details.AccountNumber)" style="float:right;height:40px" >Transfer Amount</button>
+  </mat-card-actions>
+</mat-card>
+<br>
+ <div class="search-container">
+    <mat-form-field appearance="fill" (keyup)="filterData($event)" >
+       <input matInput placeholder="search" autocomplete="off" >
+    </mat-form-field>
+</div>
+<table mat-table  matSort [dataSource]="dataSource" class="detailsPage">
+    <ng-container matColumnDef="Date">
+      <th mat-header-cell *matHeaderCellDef matSortDirection="desc" mat-sort-header> Date </th>
+      <td mat-cell *matCellDef="let element"> {{element.Date}} </td>
+    </ng-container>
+    <ng-container matColumnDef="Narration">
+      <th mat-header-cell *matHeaderCellDef  mat-sort-header>Narration</th>
+      <td mat-cell *matCellDef="let element"> {{element.Narration}} </td>
+    </ng-container>
+    <ng-container matColumnDef="ReferenceNo">
+      <th mat-header-cell *matHeaderCellDef  mat-sort-header> Reference No </th>
+      <td mat-cell *matCellDef="let element"> {{element.ReferenceNo}} </td>
+    </ng-container>
+    <ng-container matColumnDef="Withdrawl">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Debit</th>
+      <td mat-cell *matCellDef="let element">
+        <span *ngIf="element.Withdrawl>0">{{element.Withdrawl|currency:curr}}</span>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="Deposit">
+        <th mat-header-cell *matHeaderCellDef  mat-sort-header>Credit</th>
+        <td mat-cell *matCellDef="let element" >
+          <span *ngIf="element.Deposit>0">{{element.Deposit|currency:curr}}</span>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="Balance">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Closing Balance</th>
+          <td mat-cell *matCellDef="let element">{{element.Balance|currency:curr}}
+          </td>
+        </ng-container>
+        
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <mat-paginator [pageSize]="20" [pageSizeOptions]="[1,2,3,4,20]">
+</mat-paginator>
+</div>
+</mat-sidenav-content>
+</mat-sidenav-container>
+<div >
+<router-outlet></router-outlet>
+</div>
+

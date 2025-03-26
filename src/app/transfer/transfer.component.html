@@ -1,0 +1,97 @@
+<mat-toolbar style="background-color:lightblue">
+  <mat-toolbar-row>
+    <button mat-button disabled>
+      <img class="jpg-icon" src="../../../../assets/logo.PNG" style="width: 80px;;height:fit-content">
+    </button>
+    <span>
+      <b style="font-size:25px">
+        Welcome,{{username}}!!
+      </b>
+    </span>
+    <span class="example-spacer"></span>
+    <button mat-raised-button color="primary" (click)="logout();" class="example-icon favorite-icon"
+      aria-label="Example icon-button with heart icon">
+      LogOut
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+<div class="image-container">
+
+  <div class="table-container">
+    <mat-sidenav-container>
+      <mat-sidenav #sidenav opened="true" mode="side" style="background-color: lightblue;">
+        <mat-nav-list>
+          <a mat-list-item routerLink="/accountSummary">Summary</a>
+          <a mat-list-item routerLink="/transfer/0">Transfer Fund</a>
+        </mat-nav-list>
+      </mat-sidenav>
+      <mat-sidenav-content>
+        <div class="table-content" style="height:95vh;">
+          <img src="../../assets/bg-10.jpg" alt="">
+          <form #transferForm="ngForm" class="parent">
+            <!--<label *ngIf="field">Your source Account</label>
+  <input *ngIf="field" type="text" name="AccountNumber" maxlength="35" 
+        disabled="true"                style="margin-right: 5px;width:200px;height: 25px;" [(ngModel)]="accForm.AccountNumber" #AccountNumber="ngModel"/>-->
+            <mat-card [@itemAnime] *ngIf="!show" (click)="transferSelfAccount();" class="example-card">
+              <mat-card-content style="font-size:220%;">
+                Transfer to your own accounts
+                <mat-icon mat-card-avatar class="mat-icon-size">play_arrow</mat-icon>
+              </mat-card-content>
+
+            </mat-card>
+            <mat-card [@itemAnime] *ngIf="!show" (click)="transferTPAccount();" class="example-card">
+              <mat-card-content style="font-size:220%;">
+                Transfer to other account
+                <mat-icon mat-card-avatar class="mat-icon-size">play_arrow</mat-icon>
+              </mat-card-content>
+
+            </mat-card>
+            <div *ngIf="show" class="form-class" [@itemAnime]>
+              <mat-form-field>
+
+                <mat-label>Select Your Account</mat-label>
+                <!--<input  *ngIf="field;then content" name="AccountNumber" matInput [(ngModel)]="accForm.AccountNumber">
+    <ng-template #content>-->
+                <mat-select [(ngModel)]="accForm.AccountNumber" name="AccountNumber" #AccountNumber="ngModel">
+                  <mat-option *ngFor="let p of accList" [value]="p.AccountNumber">
+                    {{ p.AccountNumber }}
+                  </mat-option>
+                </mat-select>
+                <!-- </ng-template>-->
+
+              </mat-form-field>
+              <br />
+              <mat-form-field>
+                <mat-label>Select Destination Account</mat-label>
+                <mat-select name="Narration" [(ngModel)]="accForm.Narration">
+                  <mat-option *ngFor="let p of payeeList" [value]="p.AccountNumber">
+                    <span *ngIf="accForm.AccountNumber!=p.AccountNumber">{{ p.AccountNumber}}</span>
+
+                  </mat-option>
+                  <!-- <ng-container *ngFor="let p of payeeList ">
+          <mat-option *ngIf="condition" [value]="project.projId">
+            {{project.projName}}
+          </mat-option>
+        </ng-container> -->
+                </mat-select>
+
+              </mat-form-field>
+              <br />
+              <mat-form-field>
+                <mat-label>Amount</mat-label>
+                <input matInput placeholder="Amount" name="withdrawl" [(ngModel)]="accForm.Withdrawl">
+              </mat-form-field>
+              <br />
+              <br />
+              <button mat-raised-button color="primary" (click)="transfer()">Transfer</button>
+              
+            </div>
+          </form>
+        </div>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  </div>
+</div>
+<div>
+  <router-outlet></router-outlet>
+</div>

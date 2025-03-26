@@ -1,0 +1,28 @@
+ <mat-toolbar>
+    <mat-toolbar-row>
+      <button  mat-icon-button>
+        <mat-icon>menu</mat-icon>
+      </button>
+      <h1>Digi Bank</h1>
+      <span class="example-spacer"></span>
+  <button  mat-button  (click)="logout()" class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+   LogOut
+  </button>
+    </mat-toolbar-row>
+</mat-toolbar>
+ <mat-sidenav-container >
+  <mat-sidenav #sidenav opened="true" mode="side">
+    <mat-nav-list>
+      <a mat-list-item routerLink="/accountSummary">Summary</a>
+      <a mat-list-item routerLink="/transfer/0">Transact</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div style="height:88vh;">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+<div >
+  <router-outlet></router-outlet>
+</div>

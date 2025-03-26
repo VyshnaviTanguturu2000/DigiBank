@@ -1,0 +1,10 @@
+.example-spacer {
+    flex: 1 1 auto;
+  }
+
+  .transferComponent .mat-mdc-text-field-wrapper{
+    width:500px;
+  }
+  ::ng-deep .mat-form-field {
+    font-size: 25px;
+}
